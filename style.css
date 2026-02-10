@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+}
+
+h1 {
+    color: #0056b3;
+    margin-bottom: 20px;
+}
+
+.controls button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.controls button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.setting-group {
+    margin-top: 25px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    text-align: left;
+}
+
+.setting-group h2 {
+    color: #007bff;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.setting-group input[type="range"] {
+    width: calc(100% - 60px); /* Adjust width to make space for value display */
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.setting-group span {
+    display: inline-block;
+    width: 40px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.status {
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    color: #495057;
+}
