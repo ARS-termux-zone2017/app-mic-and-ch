@@ -29,7 +29,7 @@ async function startAudioProcessing() {
             audioContext = new (window.AudioContext || window.webkitAudioContext)();
         }
 
-        // Check if AudioContext is suspended
+        // Check if AudioContext is suspended (important for browser behavior)
         if (audioContext.state === 'suspended') {
             await audioContext.resume();
         }
@@ -41,7 +41,7 @@ async function startAudioProcessing() {
 
         // 3. Create Gain Node
         gainNode = audioContext.createGain();
-        gainNode.gain.value = parseFloat(gainSlider.value); // Set initial gain
+        gainNode.gain.value = parseFloat(gainSlider.value); // Set initial gain from slider
         gainValueSpan.textContent = gainSlider.value;
         statusMessage.textContent = 'Status: Gain node created.';
 
@@ -58,19 +58,19 @@ async function startAudioProcessing() {
         releaseValueSpan.textContent = releaseSlider.value;
         statusMessage.textContent = 'Status: Compressor created.';
 
-        // 5. Connect the nodes: Mic -> Gain -> Compressor -> Speakers
+        // 5. Connect the nodes: Mic -> Gain -> Compressor -> Speakers (headphone output)
         micSource.connect(gainNode);
         gainNode.connect(compressorNode);
-        compressorNode.connect(audioContext.destination); // Connect to speakers
+        compressorNode.connect(audioContext.destination); // Connect to speakers/headphones
         destination = audioContext.destination; // Store reference to speakers
 
         startButton.disabled = true;
         stopButton.disabled = false;
-        statusMessage.textContent = 'Status: Audio processing active!';
+        statusMessage.textContent = 'Status: Audio processing active! Listen via headphones.';
 
     } catch (err) {
         console.error('Error accessing microphone or processing audio:', err);
-        statusMessage.textContent = 'Status: Error! Check console for details. (Microphone access denied?)';
+        statusMessage.textContent = 'Status: Error! Check console for details. (Microphone access denied or not found?)';
         startButton.disabled = false;
         stopButton.disabled = true;
     }
@@ -88,7 +88,7 @@ function stopAudioProcessing() {
             micSource.mediaStream.getTracks().forEach(track => track.stop());
         }
         
-        // Close the audio context
+        // Close the audio context to free up resources
         audioContext.close();
         audioContext = null;
         statusMessage.textContent = 'Status: Audio processing stopped.';
@@ -136,7 +136,7 @@ releaseSlider.addEventListener('input', () => {
     releaseValueSpan.textContent = releaseSlider.value;
 });
 
-// Initial state
+// Initial state on page load
 window.addEventListener('load', () => {
     statusMessage.textContent = 'Status: Ready. Click "Start Audio" to begin.';
 });
