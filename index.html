@@ -9,7 +9,7 @@
 <body>
     <div class="background-mic"></div> <!-- Microphone PNG background div -->
     <div class="container">
-        <h1>Abir's Mic</h1> <!-- Name changed -->
+        <h1>Abir's Mic</h1> 
         <div class="controls">
             <button id="startButton">Start Audio</button>
             <button id="stopButton" disabled>Stop Audio</button>
@@ -17,26 +17,26 @@
 
         <div class="setting-group">
             <h2>Gain Control</h2>
-            <input type="range" id="gainSlider" min="0" max="5" value="0.5" step="0.1"> 
-            <span id="gainValue">0.5</span>x
+            <input type="range" id="gainSlider" min="0" max="5" value="1.0" step="0.1"> <!-- Initial gain 1.0 (no boost initially) -->
+            <span id="gainValue">1.0</span>x
         </div>
 
         <div class="setting-group">
             <h2>Compressor</h2>
             <label for="thresholdSlider">Threshold:</label>
-            <input type="range" id="thresholdSlider" min="-100" max="0" value="-30" step="1"> 
-            <span id="thresholdValue">-30</span> dB
+            <input type="range" id="thresholdSlider" min="-100" max="0" value="-24" step="1"> <!-- Default threshold for voice -->
+            <span id="thresholdValue">-24</span> dB
 
             <label for="ratioSlider">Ratio:</label>
-            <input type="range" id="ratioSlider" min="1" max="20" value="15" step="1"> 
-            <span id="ratioValue">15</span>:1
+            <input type="range" id="ratioSlider" min="1" max="20" value="4" step="1"> <!-- Softer ratio for less pumping -->
+            <span id="ratioValue">4</span>:1
 
             <label for="attackSlider">Attack:</label>
-            <input type="range" id="attackSlider" min="0" max="1" value="0.001" step="0.001"> 
-            <span id="attackValue">0.001</span> s
+            <input type="range" id="attackSlider" min="0" max="1" value="0.02" step="0.001"> <!-- Slightly slower attack for natural sound -->
+            <span id="attackValue">0.02</span> s
 
             <label for="releaseSlider">Release:</label>
-            <input type="range" id="releaseSlider" min="0" max="1" value="0.25" step="0.01">
+            <input type="range" id="releaseSlider" min="0" max="1" value="0.25" step="0.01"> <!-- Standard release -->
             <span id="releaseValue">0.25</span> s
         </div>
 
